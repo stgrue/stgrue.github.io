@@ -1,0 +1,8 @@
+ACL:
+    url: https://www.aclweb.org/anthology/venues/acl/
+IWPT:
+    url: https://www.aclweb.org/anthology/venues/iwpt/
+UDW:
+    url: https://www.aclweb.org/anthology/venues/udw/
+arXiv:
+    url: https://arxiv.org/

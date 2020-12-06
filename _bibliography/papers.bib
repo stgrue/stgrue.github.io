@@ -1,0 +1,64 @@
+@inproceedings{grunewald-friedrich-2020-unifying,
+    title = "Unifying the Treatment of Preposition-Determiner Contractions in {G}erman {U}niversal {D}ependencies Treebanks",
+    author = {Grünewald, Stefan and Friedrich, Annemarie},
+    booktitle = "Proceedings of the Fourth Workshop on Universal Dependencies (UDW 2020)",
+    abbr = "UDW",
+    month = dec,
+    year = "2020",
+    address = "Barcelona, Spain (Online)",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/2020.udw-1.11",
+    pages = "94--98",
+    abstract = "HDT-UD, the largest German UD treebank by a large margin, as well as the German-LIT treebank, currently do not analyze preposition-determiner contractions such as zum (= zu dem, {``}to the{``}) as multi-word tokens, which is inconsistent both with UD guidelines as well as other German UD corpora (GSD and PUD). In this paper, we show that harmonizing corpora with regard to this highly frequent phenomenon using a lookup-table based approach leads to a considerable increase in automatic parsing performance.",
+    pdf = "contractions_paper.pdf",
+    poster = "contractions_poster.pdf"
+}
+
+@misc{grünewald2020graphbased,
+    title={Graph-Based Universal Dependency Parsing in the Age of the Transformer: What Works, and What Doesn't}, 
+    author={Grünewald, Stefan and Friedrich, Annemarie and Kuhn, Jonas},
+    year = "2020",
+    month = oct,
+    abbr = "arXiv",
+    eprint={2010.12699},
+    url = "https://arxiv.org/abs/2010.12699",
+    abstract = "Current state-of-the-art graph-based dependency parsers differ on various dimensions. Among others, these include (a) the choice of pre-trained word embeddings or language models used for representing token, (b) training setups performing only parsing or additional tasks such as part-of-speech-tagging, and (c) their mechanism of constructing trees or graphs from edge scores. Because of this, it is difficult to estimate the impact of these architectural decisions when comparing parsers.
+In this paper, we perform a series of experiments on STEPS, a new modular graph-based parser for basic and enhanced Universal Dependencies, analyzing the effects of architectural configurations. We find that pre-trained embeddings have by far the greatest and most clear-cut impact on parser performance. The choice of factorized vs. unfactorized architectures and a multi-task training setup affect parsing accuracy in more subtle ways, depending on target language and output representation (trees vs. graphs). Our parser achieves new state-of-the-art results for a wide range of languages on both basic as well as enhanced Universal Dependencies, using a unified and comparatively simple architecture for both parsing tasks.",
+    pdf = "steps1.pdf"
+}
+
+@inproceedings{grunewald-friedrich-2020-robertnlp,
+    title = "{R}obert{NLP} at the {IWPT} 2020 Shared Task: Surprisingly Simple Enhanced {UD} Parsing for {E}nglish",
+    author = {Grünewald, Stefan and Friedrich, Annemarie},
+    booktitle = "Proceedings of the 16th International Conference on Parsing Technologies and the IWPT 2020 Shared Task on Parsing into Enhanced Universal Dependencies",
+    abbr = "IWPT",
+    month = jul,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/2020.iwpt-1.26",
+    doi = "10.18653/v1/2020.iwpt-1.26",
+    pages = "245--252",
+    abstract = "This paper presents our system at the IWPT 2020 Shared Task on Parsing into Enhanced Universal Dependencies. Using a biaffine classifier architecture (Dozat and Manning, 2017) which operates directly on finetuned RoBERTa embeddings, our parser generates enhanced UD graphs by predicting the best dependency label (or absence of a dependency) for each pair of tokens in the sentence. We address label sparsity issues by replacing lexical items in relations with placeholders at prediction time, later retrieving them from the parse in a rule-based fashion. In addition, we ensure structural graph constraints using a simple set of heuristics. On the English blind test data, our system achieves a very high parsing accuracy, ranking 1st out of 10 with an ELAS F1 score of 88.94{\%}.",
+    pdf = "robertnlp_paper.pdf",
+    slides = "robertnlp_slides.pdf"
+}
+
+@inproceedings{grunewald-etal-2018-generalized,
+    title = "Generalized Chart Constraints for Efficient {PCFG} and {TAG} Parsing",
+    author = {Grünewald, Stefan and
+      Henning, Sophie  and
+      Koller, Alexander},
+    booktitle = "Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)",
+    abbr = "ACL",
+    month = jul,
+    year = "2018",
+    address = "Melbourne, Australia",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/P18-2099",
+    doi = "10.18653/v1/P18-2099",
+    pages = "626--631",
+    abstract = "Chart constraints, which specify at which string positions a constituent may begin or end, have been shown to speed up chart parsers for PCFGs. We generalize chart constraints to more expressive grammar formalisms and describe a neural tagger which predicts chart constraints at very high precision. Our constraints accelerate both PCFG and TAG parsing, and combine effectively with other pruning techniques (coarse-to-fine and supertagging) for an overall speedup of two orders of magnitude, while improving accuracy.",
+    pdf = "cc_paper.pdf",
+    poster = "cc_poster.pdf"
+}
