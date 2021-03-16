@@ -1,3 +1,15 @@
+@misc{grunewald2021occam,
+    title = "Applying Occam's Razor to Transformer-Based Dependency Parsing: What Works, What Doesn't, and What is Really Necessary", 
+    author = {Grünewald, Stefan and Friedrich, Annemarie and Kuhn, Jonas},
+    year = "2021",
+    month = mar,
+    abbr = "arXiv",
+    eprint = {2010.12699},
+    url = "https://arxiv.org/abs/2010.12699",
+    abstract = "The introduction of pre-trained transformer-based contextualized word embeddings has led to considerable improvements in the accuracy of graph-based parsers for frameworks such as Universal Dependencies (UD). However, previous works differ in various dimensions, including their choice of pre-trained language models and whether they use LSTM layers. With the aims of disentangling the effects of these choices and identifying a simple yet widely applicable architecture, we introduce STEPS, a new modular graph-based dependency parser. Using STEPS, we perform a series of analyses on the UD corpora of a diverse set of languages. We find that the choice of pre-trained embeddings has by far the greatest impact on parser performance and identify XLM-R as a robust choice across the languages in our study. Adding LSTM layers provides no benefits. A multi-task training setup outputting additional UD features may contort results. Taking these insights together, we propose a simple but widely applicable parser architecture and configuration, achieving new state-of-the-art results for 11 out of 12 diverse languages.",
+    pdf = "steps1.pdf"
+}
+
 @inproceedings{grunewald-friedrich-2020-unifying,
     title = "Unifying the Treatment of Preposition-Determiner Contractions in {G}erman {U}niversal {D}ependencies Treebanks",
     author = {Grünewald, Stefan and Friedrich, Annemarie},
@@ -12,19 +24,6 @@
     abstract = "HDT-UD, the largest German UD treebank by a large margin, as well as the German-LIT treebank, currently do not analyze preposition-determiner contractions such as zum (= zu dem, {``}to the{``}) as multi-word tokens, which is inconsistent both with UD guidelines as well as other German UD corpora (GSD and PUD). In this paper, we show that harmonizing corpora with regard to this highly frequent phenomenon using a lookup-table based approach leads to a considerable increase in automatic parsing performance.",
     pdf = "contractions_paper.pdf",
     poster = "contractions_poster.pdf"
-}
-
-@misc{grünewald2020graphbased,
-    title={Graph-Based Universal Dependency Parsing in the Age of the Transformer: What Works, and What Doesn't}, 
-    author={Grünewald, Stefan and Friedrich, Annemarie and Kuhn, Jonas},
-    year = "2020",
-    month = oct,
-    abbr = "arXiv",
-    eprint={2010.12699},
-    url = "https://arxiv.org/abs/2010.12699",
-    abstract = "Current state-of-the-art graph-based dependency parsers differ on various dimensions. Among others, these include (a) the choice of pre-trained word embeddings or language models used for representing token, (b) training setups performing only parsing or additional tasks such as part-of-speech-tagging, and (c) their mechanism of constructing trees or graphs from edge scores. Because of this, it is difficult to estimate the impact of these architectural decisions when comparing parsers.
-In this paper, we perform a series of experiments on STEPS, a new modular graph-based parser for basic and enhanced Universal Dependencies, analyzing the effects of architectural configurations. We find that pre-trained embeddings have by far the greatest and most clear-cut impact on parser performance. The choice of factorized vs. unfactorized architectures and a multi-task training setup affect parsing accuracy in more subtle ways, depending on target language and output representation (trees vs. graphs). Our parser achieves new state-of-the-art results for a wide range of languages on both basic as well as enhanced Universal Dependencies, using a unified and comparatively simple architecture for both parsing tasks.",
-    pdf = "steps1.pdf"
 }
 
 @inproceedings{grunewald-friedrich-2020-robertnlp,
