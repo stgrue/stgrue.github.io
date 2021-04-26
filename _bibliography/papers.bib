@@ -1,3 +1,20 @@
+@inproceedings{grunewald-etal-2021-coordinate,
+    title = "Coordinate Constructions in {E}nglish Enhanced {U}niversal {D}ependencies: Analysis and Computational Modeling",
+    author = {Grünewald, Stefan and Piccirilli, Prisca and Friedrich, Annemarie},
+    booktitle = "Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics: Main Volume",
+    month = apr,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/2021.eacl-main.67",
+    pages = "795--809",
+    abbr = "EACL",
+    abstract = "In this paper, we address the representation of coordinate constructions in Enhanced Universal Dependencies (UD), where relevant dependency links are propagated from conjunction heads to other conjuncts. English treebanks for enhanced UD have been created from gold basic dependencies using a heuristic rule-based converter, which propagates only core arguments. With the aim of determining which set of links should be propagated from a semantic perspective, we create a large-scale dataset of manually edited syntax graphs. We identify several systematic errors in the original data, and propose to also propagate adjuncts. We observe high inter-annotator agreement for this semantic annotation task. Using our new manually verified dataset, we perform the first principled comparison of rule-based and (partially novel) machine-learning based methods for conjunction propagation for English. We show that learning propagation rules is more effective than hand-designing heuristic rules. When using automatic parses, our neural graph-parser based edge predictor outperforms the currently predominant pipelines using a basic-layer tree parser plus converters.",
+    pdf = "coord_paper.pdf",
+    slides = "coord_slides.pdf",
+    poster = "coord_poster.pdf"
+}
+
 @misc{grunewald2021occam,
     title = "Applying Occam's Razor to Transformer-Based Dependency Parsing: What Works, What Doesn't, and What is Really Necessary", 
     author = {Grünewald, Stefan and Friedrich, Annemarie and Kuhn, Jonas},
