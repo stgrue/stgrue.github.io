@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Stefan Grünewald</title>
+<title>Stefan Grünewald | Notes on getting rid of loops in PyTorch</title>
 <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 ">
 
@@ -33,7 +33,7 @@
 <link rel="shortcut icon" href="/assets/img/favicon.ico">
 <link rel="stylesheet" href="/assets/css/main.css">
 
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/2021/01/06/pytorch-loops.html">
 
 <!-- Open Graph -->
 
@@ -117,34 +117,50 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
+      
 
-  <div class="header-bar">
-    <h1></h1>
-    <h2></h2>
-  </div>
+<div class="post">
 
+  <header class="post-header">
+    <h1 class="post-title">Notes on getting rid of loops in PyTorch</h1>
+    <p class="post-meta">January 6, 2021</p>
+  </header>
 
-  <ul class="post-list">
-    
-  </ul>
+  <article class="post-content">
+    <h2 id="intro">Intro</h2>
+
+<p>This blog post wil contain code like this:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
+  <span class="s">"""A simple example class"""</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">12345</span>
+
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Initializing"</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="c1"># This is a comment
+</span>    <span class="k">return</span> <span class="s">f"hello </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span>
+
+<span class="n">mc_instance</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+<span class="n">mc_instance</span><span class="p">.</span><span class="n">f</span><span class="p">(</span><span class="s">"stefan"</span><span class="p">)</span></code></pre></figure>
+
+<p>I should change the highliting to something similar to the PyTorch documentation.</p>
+
+<h2 id="techniques">Techniques</h2>
+
+<p>These are the techniques:</p>
+<ul>
+  <li>Broadcasting / expanding</li>
+  <li>torch.gather / torch.index_select</li>
+  <li>torch.cumsum / torch.cummax</li>
+</ul>
+
+  </article>
 
   
-<div class="pagination clearfix mb1 mt4">
-  <div class="left">
-    
-      <span class="disabled"></span>
-    
-  </div>
-  <div class="right">
-    
-      <span class="disabled"></span>
-    
-  </div>
-  <div class="pagination-meta">Page  of </div>
-</div>
-
-
 
 </div>
 
