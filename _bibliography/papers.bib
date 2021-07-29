@@ -1,3 +1,51 @@
+@inproceedings{grunewald-etal-2021-robertnlp,
+    title = "{R}obert{NLP} at the {IWPT} 2021 Shared Task: Simple Enhanced {UD} Parsing for 17 Languages",
+    author = {Gr{\"u}newald, Stefan  and
+      Oertel, Frederik Tobias  and
+      Friedrich, Annemarie},
+    booktitle = "Proceedings of the 17th International Conference on Parsing Technologies and the IWPT 2021 Shared Task on Parsing into Enhanced Universal Dependencies (IWPT 2021)",
+    abbr = "IWPT",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.iwpt-1.21",
+    doi = "10.18653/v1/2021.iwpt-1.21",
+    pages = "196--203",
+    abstract = "This paper presents our multilingual dependency parsing system as used in the IWPT 2021 Shared Task on Parsing into Enhanced Universal Dependencies. Our system consists of an unfactorized biaffine classifier that operates directly on fine-tuned XLM-R embeddings and generates enhanced UD graphs by predicting the best dependency label (or absence of a dependency) for each pair of tokens. To avoid sparsity issues resulting from lexicalized dependency labels, we replace lexical items in relations with placeholders at training and prediction time, later retrieving them from the parse via a hybrid rule-based/machine-learning system. In addition, we utilize model ensembling at prediction time. Our system achieves high parsing accuracy on the blind test data, ranking 3rd out of 9 with an average ELAS F1 score of 86.97.",
+    pdf = "iwpt2021_sharedtask.pdf",
+}
+
+@inproceedings{grunewald-etal-2021-applying,
+    title = "Applying Occam{'}s Razor to Transformer-Based Dependency Parsing: What Works, What Doesn{'}t, and What is Really Necessary",
+    author = {Gr{\"u}newald, Stefan  and
+      Friedrich, Annemarie  and
+      Kuhn, Jonas},
+    booktitle = "Proceedings of the 17th International Conference on Parsing Technologies and the IWPT 2021 Shared Task on Parsing into Enhanced Universal Dependencies (IWPT 2021)",
+    abbr = "IWPT",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.iwpt-1.13",
+    doi = "10.18653/v1/2021.iwpt-1.13",
+    pages = "131--144",
+    abstract = "The introduction of pre-trained transformer-based contextualized word embeddings has led to considerable improvements in the accuracy of graph-based parsers for frameworks such as Universal Dependencies (UD). However, previous works differ in various dimensions, including their choice of pre-trained language models and whether they use LSTM layers. With the aims of disentangling the effects of these choices and identifying a simple yet widely applicable architecture, we introduce STEPS, a new modular graph-based dependency parser. Using STEPS, we perform a series of analyses on the UD corpora of a diverse set of languages. We find that the choice of pre-trained embeddings has by far the greatest impact on parser performance and identify XLM-R as a robust choice across the languages in our study. Adding LSTM layers provides no benefits when using transformer-based embeddings. A multi-task training setup outputting additional UD features may contort results. Taking these insights together, we propose a simple but widely applicable parser architecture and configuration, achieving new state-of-the-art results (in terms of LAS) for 10 out of 12 diverse languages.",
+    pdf = "iwpt2021_occam.pdf",
+}
+
+@misc{grunewald-2021-mst,
+    title = "Maximum Spanning Trees Are Invariant to Temperature Scaling in Graph-based Dependency Parsing", 
+    author = {Grünewald, Stefan},
+    year = "2021",
+    month = jun,
+    abbr = "arXiv",
+    eprint = {2106.08159},
+    url = "https://arxiv.org/abs/2106.08159",
+    abstract = "Modern graph-based syntactic dependency parsers operate by predicting, for each token within a sentence, a probability distribution over its possible syntactic heads (i.e., all other tokens) and then extracting a maximum spanning tree from the resulting log-probabilities. Nowadays, virtually all such parsers utilize deep neural networks and may thus be susceptible to miscalibration (in particular, overconfident predictions). In this paper, we prove that temperature scaling, a popular technique for post-hoc calibration of neural networks, cannot change the output of the aforementioned procedure. We conclude that other techniques are needed to tackle miscalibration in graph-based dependency parsers in a way that improves parsing accuracy. ",
+    pdf = "mst_temp_proof.pdf",
+}
+
 @inproceedings{grunewald-etal-2021-coordinate,
     title = "Coordinate Constructions in {E}nglish Enhanced {U}niversal {D}ependencies: Analysis and Computational Modeling",
     author = {Grünewald, Stefan and Piccirilli, Prisca and Friedrich, Annemarie},
@@ -13,18 +61,6 @@
     pdf = "coord_paper.pdf",
     slides = "coord_slides.pdf",
     poster = "coord_poster.pdf"
-}
-
-@misc{grunewald2021occam,
-    title = "Applying Occam's Razor to Transformer-Based Dependency Parsing: What Works, What Doesn't, and What is Really Necessary", 
-    author = {Grünewald, Stefan and Friedrich, Annemarie and Kuhn, Jonas},
-    year = "2021",
-    month = mar,
-    abbr = "arXiv",
-    eprint = {2010.12699},
-    url = "https://arxiv.org/abs/2010.12699",
-    abstract = "The introduction of pre-trained transformer-based contextualized word embeddings has led to considerable improvements in the accuracy of graph-based parsers for frameworks such as Universal Dependencies (UD). However, previous works differ in various dimensions, including their choice of pre-trained language models and whether they use LSTM layers. With the aims of disentangling the effects of these choices and identifying a simple yet widely applicable architecture, we introduce STEPS, a new modular graph-based dependency parser. Using STEPS, we perform a series of analyses on the UD corpora of a diverse set of languages. We find that the choice of pre-trained embeddings has by far the greatest impact on parser performance and identify XLM-R as a robust choice across the languages in our study. Adding LSTM layers provides no benefits. A multi-task training setup outputting additional UD features may contort results. Taking these insights together, we propose a simple but widely applicable parser architecture and configuration, achieving new state-of-the-art results for 11 out of 12 diverse languages.",
-    pdf = "steps1.pdf"
 }
 
 @inproceedings{grunewald-friedrich-2020-unifying,

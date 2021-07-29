@@ -240,6 +240,18 @@ footer.sticky-bottom {
   }
 }
 
+.post-content h2 {
+  margin-top: 1em;
+}
+
+// Code blocks
+pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 24px;
+  font-size: 1.1em;
+  font-family: monospace;
+}
 
 // Distill
 
