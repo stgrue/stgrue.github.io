@@ -1,3 +1,38 @@
+@inproceedings{burkle-etal-2021-corpus,
+    title = "A Corpus Study of Creating Rule-Based Enhanced {U}niversal {D}ependencies for {G}erman",
+    author = {B{\"u}rkle, Teresa  and
+      Gr{\"u}newald, Stefan  and
+      Friedrich, Annemarie},
+    booktitle = "Proceedings of The Joint 15th Linguistic Annotation Workshop (LAW) and 3rd Designing Meaning Representations (DMR) Workshop",
+    abbr = "LAW",
+    month = nov # " 11",
+    year = "2021",
+    address = "Punta Cana, Dominican Republic",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.law-1.9",
+    pages = "85--95",
+    abstract = "In this paper, we present a first attempt at enriching German Universal Dependencies (UD) treebanks with enhanced dependencies. Similarly to the converter for English (Schuster and Manning, 2016), we develop a rule-based system for deriving enhanced dependencies from the basic layer, covering three linguistic phenomena: relative clauses, coordination, and raising/control. For quality control, we manually correct or validate a set of 196 sentences, finding that around 90{\%} of added relations are correct. Our data analysis reveals that difficulties arise mainly due to inconsistencies in the basic layer annotations. We show that the English system is in general applicable to German data, but that adapting to the particularities of the German treebanks and language increases precision and recall by up to 10{\%}. Comparing the application of our converter on gold standard dependencies vs. automatic parses, we find that F1 drops by around 10{\%} in the latter setting due to error propagation. Finally, an enhanced UD parser trained on a converted treebank performs poorly when evaluated against our annotations, indicating that more work remains to be done to create gold standard enhanced German treebanks.",
+    pdf = "law2021_german_ud.pdf"
+}
+
+@inproceedings{sineva-etal-2021-negation,
+    title = "Negation-Instance Based Evaluation of End-to-End Negation Resolution",
+    author = {Sineva, Elizaveta  and
+      Gr{\"u}newald, Stefan  and
+      Friedrich, Annemarie  and
+      Kuhn, Jonas},
+    booktitle = "Proceedings of the 25th Conference on Computational Natural Language Learning",
+    abbr = "CoNLL",
+    month = nov,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.conll-1.41",
+    pages = "528--543",
+    abstract = "In this paper, we revisit the task of negation resolution, which includes the subtasks of cue detection (e.g. {``}not{''}, {``}never{''}) and scope resolution. In the context of previous shared tasks, a variety of evaluation metrics have been proposed. Subsequent works usually use different subsets of these, including variations and custom implementations, rendering meaningful comparisons between systems difficult. Examining the problem both from a linguistic perspective and from a downstream viewpoint, we here argue for a negation-instance based approach to evaluating negation resolution. Our proposed metrics correspond to expectations over per-instance scores and hence are intuitively interpretable. To render research comparable and to foster future work, we provide results for a set of current state-of-the-art systems for negation resolution on three English corpora, and make our implementation of the evaluation scripts publicly available.",
+    pdf = "conll2021_negation.pdf"
+}
+
 @inproceedings{grunewald-etal-2021-robertnlp,
     title = "{R}obert{NLP} at the {IWPT} 2021 Shared Task: Simple Enhanced {UD} Parsing for 17 Languages",
     author = {Gr{\"u}newald, Stefan  and

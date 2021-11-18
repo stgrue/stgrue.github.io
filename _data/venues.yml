@@ -1,10 +1,15 @@
 EACL:
-    url: https://www.aclweb.org/anthology/venues/eacl/
+    url: https://aclanthology.org/venues/eacl/
 ACL:
-    url: https://www.aclweb.org/anthology/venues/acl/
+    url: https://aclanthology.org/venues/acl/
 IWPT:
-    url: https://www.aclweb.org/anthology/venues/iwpt/
+    url: https://aclanthology.org/venues/iwpt/
 UDW:
-    url: https://www.aclweb.org/anthology/venues/udw/
+    url: https://aclanthology.org/venues/udw/
 arXiv:
     url: https://arxiv.org/
+CoNLL:
+    url: https://aclanthology.org/venues/conll/
+LAW:
+    url: https://aclanthology.org/venues/law/
+
