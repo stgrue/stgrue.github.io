@@ -6,6 +6,27 @@ nav: true
 
 
 categories:
+  - name: Work
+    entries:
+      - name: Senior Data Scientist for AI Enabling
+        institution: Bosch Center for Artificial Intelligence
+        institution_url: "https://www.bosch-ai.com/"
+        date: 2023–today
+        notes:
+          - "Providing trainings and mentoring on Industrial AI, Machine Learning, and Data Science"
+      - name: Doctoral researcher
+        institution: Bosch Center for Artificial Intelligence
+        institution_url: "https://www.bosch-ai.com/"
+        date: 2019–2023
+        notes:
+          - "Part of research group \"Natural Language Processing and Semantic Reasoning\""
+      - name: Research assistant
+        institution: Saarland University (Saarbrücken)
+        institution_url: "http://www.coli.uni-saarland.de/"
+        date: 2015–2018
+        notes:
+          - "Teaching assistant for the lecture \"Introduction to Computational Linguistics\""
+          - "Software development and research on discourse annotation and statistical parsing"
   - name: Education
     entries:
       - name: Ph.D. Computational Linguistics
@@ -33,21 +54,6 @@ categories:
         institution_url: "https://www.leibniz-kolleg.uni-tuebingen.de/"
         date: 2013–2014
         description: "The Studium generale serves as a preparation for university studies and offers courses and seminars from a wide variety of subjects, including German studies, rhetoric, and astronomy."
-  - name: Work
-    entries:
-      - name: Doctoral researcher
-        institution: Bosch Center for Artificial Intelligence
-        institution_url: "https://www.bosch-ai.com/"
-        date: 2019–today
-        notes:
-          - "Part of group R26 (\"Natural Language Processing and Semantic Reasoning\")"
-      - name: Research assistant
-        institution: Saarland University (Saarbrücken)
-        institution_url: "http://www.coli.uni-saarland.de/"
-        date: 2015–2018
-        notes:
-          - "Teaching assistant for the lecture \"Introduction to Computational Linguistics\""
-          - "Software development and research on discourse annotation and statistical parsing"
   - name: Misc.
     entries:
       - name: M.Sc. Informatics Class Prize
