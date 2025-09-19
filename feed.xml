@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2025-09-19T12:31:22+02:00</updated><id>/feed.xml</id><title type="html">Stefan Grünewald</title><subtitle>Personal website of Stefan Grünewald
+</subtitle><entry><title type="html">Notes on PyTorch tensor operations</title><link href="/2021/05/01/code.html" rel="alternate" type="text/html" title="Notes on PyTorch tensor operations" /><published>2021-05-01T17:09:00+02:00</published><updated>2021-05-01T17:09:00+02:00</updated><id>/2021/05/01/code</id><content type="html" xml:base="/2021/05/01/code.html"><![CDATA[<p>This theme implements a built-in Jekyll feature, the use of Rouge, for syntax highlighting.
+It supports more than 100 languages.
+This example is in C++.
+All you have to do is wrap your code in a liquid tag:</p>
+
+<p>The keyword <code class="language-plaintext highlighter-rouge">linenos</code> triggers display of line numbers.
+Produces something like this:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">TestClass</span><span class="p">:</span>
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+    <span class="k">pass</span></code></pre></figure>]]></content><author><name></name></author><summary type="html"><![CDATA[Notes on PyTorch tensor operations]]></summary></entry><entry><title type="html">a distill-style blog post</title><link href="/2018/12/22/distill.html" rel="alternate" type="text/html" title="a distill-style blog post" /><published>2018-12-22T00:00:00+01:00</published><updated>2018-12-22T00:00:00+01:00</updated><id>/2018/12/22/distill</id><content type="html" xml:base="/2018/12/22/distill.html"><![CDATA[<h2 id="equations">Equations</h2>
+
+<p>This theme supports rendering beautiful math in inline and display modes using <a href="https://khan.github.io/KaTeX/">KaTeX</a> engine.
+You just need to surround your math expression with <code class="language-plaintext highlighter-rouge">$$</code>, like <code class="language-plaintext highlighter-rouge">$$ E = mc^2 $$</code>.
+If you leave it inside a paragraph, it will produce an inline expression, just like \(E = mc^2\).</p>
+
+<p>To use display mode, again surround your expression with <code class="language-plaintext highlighter-rouge">$$</code> and place it as a separate paragraph.
+Here is an example:</p>
+
+\[\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)\]
+
+<p>Note that <a href="https://khan.github.io/KaTeX/">KaTeX</a> is work in progress, so it does not support the full range of math expressions as, say, <a href="https://www.mathjax.org/">MathJax</a>.
+Yet, it is <a href="http://www.intmath.com/cg5/katex-mathjax-comparison.php">blazing fast</a>.</p>
+
+<hr />
+
+<h2 id="citations">Citations</h2>
+
+<p>Citations are then used in the article body with the <code class="language-plaintext highlighter-rouge">&lt;d-cite&gt;</code> tag.
+The key attribute is a reference to the id provided in the bibliography.
+The key attribute can take multiple ids, separated by commas.</p>
+
+<p>The citation is presented inline like this: <d-cite key="gregor2015draw"></d-cite> (a number that displays more information on hover).
+If you have an appendix, a bibliography is automatically created and populated in it.</p>
+
+<p>Distill chose a numerical inline citation style to improve readability of citation dense articles and because many of the benefits of longer citations are obviated by displaying more information on hover.
+However, we consider it good style to mention author last names if you discuss something at length and it fits into the flow well — the authors are human and it’s nice for them to have the community associate them with their work.</p>
+
+<hr />
+
+<h2 id="footnotes">Footnotes</h2>
+
+<p>Just wrap the text you would like to show up in a footnote in a <code class="language-plaintext highlighter-rouge">&lt;d-footnote&gt;</code> tag.
+The number of the footnote will be automatically generated.<d-footnote>This will become a hoverable footnote.</d-footnote></p>
+
+<hr />
+
+<h2 id="code-blocks">Code Blocks</h2>
+
+<p>Syntax highlighting is provided within <code class="language-plaintext highlighter-rouge">&lt;d-code&gt;</code> tags.
+An example of inline code snippets: <code class="language-plaintext highlighter-rouge">&lt;d-code language="html"&gt;let x = 10;&lt;/d-code&gt;</code>.
+For larger blocks of code, add a <code class="language-plaintext highlighter-rouge">block</code> attribute:</p>
+
+<d-code block="" language="javascript">
+  var x = 25;
+  function(x) {
+    return x * x;
+  }
+</d-code>
+
+<hr />
+
+<h2 id="layouts">Layouts</h2>
+
+<p>The main text column is referred to as the body.
+It is the assumed layout of any direct descendants of the <code class="language-plaintext highlighter-rouge">d-article</code> element.</p>
+
+<div class="fake-img l-body">
+  <p>.l-body</p>
+</div>
+
+<p>For images you want to display a little larger, try <code class="language-plaintext highlighter-rouge">.l-page</code>:</p>
+
+<div class="fake-img l-page">
+  <p>.l-page</p>
+</div>
+
+<p>All of these have an outset variant if you want to poke out from the body text a little bit.
+For instance:</p>
+
+<div class="fake-img l-body-outset">
+  <p>.l-body-outset</p>
+</div>
+
+<div class="fake-img l-page-outset">
+  <p>.l-page-outset</p>
+</div>
+
+<p>Occasionally you’ll want to use the full browser width.
+For this, use <code class="language-plaintext highlighter-rouge">.l-screen</code>.
+You can also inset the element a little from the edge of the browser by using the inset variant.</p>
+
+<div class="fake-img l-screen">
+  <p>.l-screen</p>
+</div>
+<div class="fake-img l-screen-inset">
+  <p>.l-screen-inset</p>
+</div>
+
+<p>The final layout is for marginalia, asides, and footnotes.
+It does not interrupt the normal flow of <code class="language-plaintext highlighter-rouge">.l-body</code> sized text except on mobile screen sizes.</p>
+
+<div class="fake-img l-gutter">
+  <p>.l-gutter</p>
+</div>]]></content><author><name>Albert Einstein</name></author><summary type="html"><![CDATA[an example of a distill-style blog post and main elements]]></summary></entry><entry><title type="html">a post with comments</title><link href="/2015/10/20/comments.html" rel="alternate" type="text/html" title="a post with comments" /><published>2015-10-20T17:59:00+02:00</published><updated>2015-10-20T17:59:00+02:00</updated><id>/2015/10/20/comments</id><content type="html" xml:base="/2015/10/20/comments.html"><![CDATA[<p>This post shows how to add DISQUS comments.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[an example of a blog post with comments]]></summary></entry><entry><title type="html">a post with math</title><link href="/2015/10/20/math.html" rel="alternate" type="text/html" title="a post with math" /><published>2015-10-20T17:12:00+02:00</published><updated>2015-10-20T17:12:00+02:00</updated><id>/2015/10/20/math</id><content type="html" xml:base="/2015/10/20/math.html"><![CDATA[<p>This theme supports rendering beautiful math in inline and display modes using <a href="https://khan.github.io/KaTeX/">KaTeX</a> engine. You just need to surround your math expression with <code class="language-plaintext highlighter-rouge">$$</code>, like <code class="language-plaintext highlighter-rouge">$$ E = mc^2 $$</code>. If you leave it inside a paragraph, it will produce an inline expression, just like \(E = mc^2\).</p>
+
+<p>To use display mode, again surround your expression with <code class="language-plaintext highlighter-rouge">$$</code> and place it as a separate paragraph. Here is an example:</p>
+
+\[\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)\]
+
+<p>Note that <a href="https://khan.github.io/KaTeX/">KaTeX</a> is work in progress, so it does not support the full range of math expressions as, say, <a href="https://www.mathjax.org/">MathJax</a>. Yet, it is <a href="http://www.intmath.com/cg5/katex-mathjax-comparison.php">blazing fast</a>.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[an example of a blog post with some math]]></summary></entry><entry><title type="html">a post with images</title><link href="/2015/05/15/images.html" rel="alternate" type="text/html" title="a post with images" /><published>2015-05-15T23:01:00+02:00</published><updated>2015-05-15T23:01:00+02:00</updated><id>/2015/05/15/images</id><content type="html" xml:base="/2015/05/15/images.html"><![CDATA[<p>Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptown vinyl kitsch. Fingerstache four loko meh 8-bit, tousled banh mi tilde forage Schlitz dreamcatcher twee 3 wolf moon. Chambray asymmetrical paleo salvia, sartorial umami four loko master cleanse drinking vinegar brunch.</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/9.jpg" />
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/7.jpg" />
+    </div>
+</div>
+<div class="caption">
+    A simple, elegant caption looks good between image rows, after each row, or doesn't have to be there at all.
+</div>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/8.jpg" />
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/10.jpg" />
+    </div>
+</div>
+
+<p>Slow-carb four dollar toast Helvetica pop-up. Kale chips next level literally trust fund Pitchfork. Jean shorts Pinterest beard, farm-to-table irony craft beer swag tofu 8-bit Banksy. Quinoa forage fanny pack, pug hashtag Echo Park heirloom Schlitz tote bag artisan Neutra mumblecore 90’s shabby chic raw denim.</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/11.jpg" />
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/12.jpg" />
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/7.jpg" />
+    </div>
+</div>]]></content><author><name></name></author><summary type="html"><![CDATA[this is what included images could look like]]></summary></entry></feed>
