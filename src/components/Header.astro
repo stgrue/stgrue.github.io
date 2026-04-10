@@ -1,0 +1,59 @@
+---
+const { displayPageName, activePage } = Astro.props;
+---
+
+<header>
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm sticky-top">
+        <div class="container">
+            {
+                displayPageName && (
+                    <a class="navbar-brand title font-weight-lighter" href="/">
+                        <span class="font-weight-bold">Stefan</span> Grünewald
+                    </a>
+                )
+            }
+
+            <!-- Navbar Toggle -->
+            <button
+                class="navbar-toggler collapsed ml-auto"
+                type="button"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar top-bar"></span>
+                <span class="icon-bar middle-bar"></span>
+                <span class="icon-bar bottom-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse text-right" id="navbarNav">
+                <ul class="navbar-nav ml-auto flex-nowrap">
+                    <li class={`nav-item ${activePage === "about" ? "active" : ""}`}>
+                        <a class="nav-link" href="/">
+                            about
+                            {activePage === "about" && <span class="sr-only">(current)</span>}
+                        </a>
+                    </li>
+                    <li class={`nav-item ${activePage === "cv" ? "active" : ""}`}>
+                        <a class="nav-link" href="/cv/">cv</a>
+                    </li>
+                    <li class={`nav-item ${activePage === "publications" ? "active" : ""}`}>
+                        <a class="nav-link" href="/publications/">publications</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script>
+  const toggler = document.querySelector('.navbar-toggler');
+  const navMenu = document.getElementById('navbarNav');
+  if (toggler && navMenu) {
+    toggler.addEventListener('click', () => {
+      toggler.classList.toggle('collapsed');
+      navMenu.classList.toggle('show');
+    });
+  }
+</script>

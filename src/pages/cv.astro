@@ -1,0 +1,140 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TimeLine from "../components/TimeLine.astro";
+---
+
+<BaseLayout displayPageName activePage="cv">
+  <div class="container mt-5">
+    <header class="post-header">
+      <h1 class="post-title">CV</h1>
+    </header>
+
+    <div class="cv-section">
+      <h2 class="cv-heading">Work</h2>
+      <div class="time-line-container">
+        <TimeLine
+          title="Senior Data Scientist for AI Enabling"
+          subtitle='2023–today at <a href="https://www.bosch.com/research/bcai/">Bosch Center for Artificial Intelligence</a>'
+        >
+          <ul>
+            <li>
+              Providing trainings and mentoring on Industrial AI, Machine
+              Learning, and Data Science
+            </li>
+          </ul>
+        </TimeLine>
+        <TimeLine
+          title="Doctoral Researcher"
+          subtitle='2019–2023 at <a href="https://www.bosch.com/research/bcai/">Bosch Center for Artificial Intelligence</a>'
+        >
+          <ul>
+            <li>
+              Part of research group "Natural Language Processing and Semantic
+              Reasoning"
+            </li>
+          </ul>
+        </TimeLine>
+        <TimeLine
+          title="Research Assistant"
+          subtitle='2015–2018 at <a href="http://www.coli.uni-saarland.de/">Saarland University (Saarbrücken)</a>'
+        >
+          <ul>
+            <li>
+              Teaching assistant for the lecture "Introduction to Computational
+              Linguistics"
+            </li>
+            <li>
+              Software development and research on discourse annotation and
+              statistical parsing
+            </li>
+          </ul>
+        </TimeLine>
+      </div>
+    </div>
+
+    <div class="cv-section">
+      <h2 class="cv-heading">Education</h2>
+      <div class="time-line-container">
+        <TimeLine
+          title="Ph.D. Computational Linguistics"
+          subtitle='2019–2024 at <a href="https://www.ims.uni-stuttgart.de/">University of Stuttgart</a>'
+        >
+          <ul>
+            <li>
+              Topic: Syntactically informed methods for information extraction
+              in scientific writing
+            </li>
+          </ul>
+        </TimeLine>
+        <TimeLine
+          title="M.Sc. Informatics"
+          subtitle='2018–2019 at <a href="https://www.ed.ac.uk/informatics/">University of Edinburgh</a>'
+        >
+          <ul>
+            <li>Final grade: A3 ("with distinction")</li>
+            <li>
+              Master's thesis: "Epidemic Spreading and Real-Time Epidemic
+              Response in Community Networks"
+            </li>
+          </ul>
+        </TimeLine>
+        <TimeLine
+          title="B.Sc. Computational Linguistics"
+          subtitle='2014–2018 at <a href="http://www.coli.uni-saarland.de/">Saarland University (Saarbrücken)</a>'
+        >
+          <ul>
+            <li>Final grade: 1.1 ("with distinction")</li>
+            <li>
+              Bachelor's thesis: "Efficient IRTG Parsing with Neural Chart
+              Constraints" (in German)
+            </li>
+          </ul>
+        </TimeLine>
+        <TimeLine
+          title="Studium generale"
+          subtitle='2013–2014 at <a href="https://www.leibniz-kolleg.uni-tuebingen.de/">Leibniz Kolleg (Tübingen)</a>'
+        >
+          <p>
+            The Studium generale serves as a preparation for university studies
+            and offers courses and seminars from a wide variety of subjects,
+            including German studies, rhetoric, and astronomy.
+          </p>
+        </TimeLine>
+      </div>
+    </div>
+
+    <div class="cv-section">
+      <h2 class="cv-heading">Misc.</h2>
+      <div class="time-line-container">
+        <TimeLine title="M.Sc. Informatics Class Prize" subtitle="2019">
+          <p>
+            The M.Sc. Informatics Class Prize is awarded to the student who
+            gained the highest overall mark in the M.Sc. Informatics degree.
+          </p>
+        </TimeLine>
+        <TimeLine
+          title="Scholarship"
+          subtitle='2016–2019 at <a href="https://www.studienstiftung.de/en/">German Academic Scholarship Foundation</a>'
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .cv-section:first-of-type {
+    margin-top: 2rem;
+  }
+
+  .cv-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .cv-heading {
+    color: #828282;
+    border-top: 1px solid #828282;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: right;
+  }
+</style>

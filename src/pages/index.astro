@@ -1,0 +1,136 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Socials from "../components/Socials.astro";
+import NewsList from "../components/NewsList.astro";
+import { Image } from "astro:assets";
+import profPic from "../assets/img/prof_pic.jpg";
+import headShot from "../assets/img/headshot.jpg";
+---
+
+<BaseLayout activePage="about">
+	<div class="container mt-5">
+		<div class="post">
+			<header class="post-header">
+				<!-- Headshot (mobile only) -->
+				<div class="d-md-none post-header-mobile">
+					<Image
+						src={headShot}
+						alt="Stefan Grünewald's headshot"
+						class="profile-headshot"
+					/>
+					<a class="navbar-brand title font-weight-lighter" href="/">
+						<span class="font-weight-bold">Stefan</span> Grünewald
+					</a>
+				</div>
+				<a
+					class="navbar-brand title font-weight-lighter d-none d-md-inline"
+					href="/"
+				>
+					<span class="font-weight-bold">Stefan</span> Grünewald
+				</a>
+			</header>
+
+			<article>
+				<div class="row">
+					<!-- Profile picture (desktop only) -->
+					<div class="profile col-md-4 order-md-2 d-none d-md-block">
+						<Image
+							src={profPic}
+							alt="Stefan Grünewald's profile picture"
+							class="img-fluid z-depth-1 rounded"
+						/>
+					</div>
+
+					<!-- Bio text -->
+					<div class="col-md-8 order-md-1">
+						<p>
+							I am a Senior Data Scientist for AI Enabling at the <a
+								href="https://www.bosch.com/research/bcai/"
+								rel="external nofollow noopener"
+								target="_blank"
+								>Bosch Center for Artificial Intelligence</a
+							>, providing training and mentoring on Industrial
+							AI, Machine Learning, and Data Science projects.
+						</p>
+
+						<p>
+							Previously, I have obtained Ph.D. degree in Natural
+							Language Processing at the <a
+								href="https://www.ims.uni-stuttgart.de/"
+								rel="external nofollow noopener"
+								target="_blank">University of Stuttgart</a
+							> on syntactic parsing and information extraction from
+							scientific writing. I also hold a Masters degree in Informatics
+							(<a
+								href="https://www.ed.ac.uk/informatics"
+								rel="external nofollow noopener"
+								target="_blank">University of Edinburgh</a
+							>) and a Bachelors degree in Computational
+							Linguistics (<a
+								href="https://www.coli.uni-saarland.de/"
+								rel="external nofollow noopener"
+								target="_blank">Saarland University</a
+							>), and I have completed a one-year general studies
+							program at the <a
+								href="https://www.leibniz-kolleg.uni-tuebingen.de/"
+								rel="external nofollow noopener"
+								target="_blank">Leibniz Kolleg</a
+							> in Tübingen.
+						</p>
+
+						<p>
+							My main area of interest and expertise is Natural
+							Language Processing, particularly language models
+							and neural networks for structured prediction in
+							NLP. If you have questions or otherwise want to get
+							in touch, please don't hesitate to send me an email!
+						</p>
+					</div>
+				</div>
+
+				<!-- News -->
+				<NewsList />
+
+				<!-- Social links -->
+				<Socials />
+			</article>
+		</div>
+	</div>
+</BaseLayout>
+
+<style>
+	.profile img {
+		width: 100%;
+	}
+
+	.post-header .navbar-brand.title {
+		font-size: 2.5rem;
+	}
+
+	@media (max-width: 420px) {
+		.post-header .navbar-brand.title {
+			font-size: 1.75rem;
+		}
+	}
+
+	.post-header-mobile {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1em;
+	}
+
+	.profile-headshot {
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		overflow: hidden;
+		object-fit: cover;
+		flex-shrink: 0;
+		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+	}
+
+	.z-depth-1 {
+		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+	}
+</style>

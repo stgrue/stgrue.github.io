@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PublicationEntry from "../components/PublicationEntry.astro";
+import yaml from "js-yaml";
+import fs from "node:fs";
+import path from "node:path";
+
+// Load YAML data
+const dataDir = path.resolve("src/assets/publications_data");
+const publications = yaml.load(
+  fs.readFileSync(path.join(dataDir, "publications.yml"), "utf-8")
+);
+const coauthors = yaml.load(
+  fs.readFileSync(path.join(dataDir, "coauthors.yml"), "utf-8")
+);
+const venues = yaml.load(
+  fs.readFileSync(path.join(dataDir, "venues.yml"), "utf-8")
+);
+
+// Group publications by year (descending)
+const pubsByYear = new Map();
+for (const pub of publications) {
+  if (!pubsByYear.has(pub.year)) pubsByYear.set(pub.year, []);
+  pubsByYear.get(pub.year).push(pub);
+}
+const sortedYears = [...pubsByYear.keys()].sort((a, b) => b - a);
+---
+
+<BaseLayout displayPageName activePage="publications">
+  <div class="container mt-5">
+    <header class="post-header">
+      <h1 class="post-title">Publications</h1>
+    </header>
+
+    <div class="publications">
+      {sortedYears.map((year) => (
+        <>
+          <h2 class="year">{year}</h2>
+          <ol class="bibliography">
+            {pubsByYear.get(year).map((pub) => (
+              <PublicationEntry pub={pub} coauthors={coauthors} venues={venues} />
+            ))}
+          </ol>
+        </>
+      ))}
+    </div>
+  </div>
+
+  <style>
+    .publications {
+      margin-top: 2rem;
+    }
+    .publications h2.year {
+      color: #828282;
+      border-top: 1px solid #828282;
+      padding-top: 1rem;
+      margin-top: 2rem;
+      margin-bottom: -2rem;
+      text-align: right;
+    }
+    .publications ol.bibliography {
+      list-style: none;
+      padding: 0;
+      margin-top: 0;
+    }
+  </style>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('a.abstract').forEach(function(link) {
+        link.addEventListener('click', function() {
+          var elem = this.closest('li').querySelector('span.abstract.hidden');
+          if (!elem) return;
+          if (elem.classList.contains('open')) {
+            elem.style.height = elem.scrollHeight + 'px';
+            elem.offsetHeight; // force reflow
+            elem.style.height = '0px';
+          } else {
+            elem.style.height = elem.scrollHeight + 'px';
+            setTimeout(function() { elem.style.height = 'auto'; }, 151);
+          }
+          elem.classList.toggle('open');
+        });
+      });
+    });
+  </script>
+</BaseLayout>

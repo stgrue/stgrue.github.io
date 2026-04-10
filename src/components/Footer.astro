@@ -1,0 +1,37 @@
+---
+const year = new Date().getFullYear()
+---
+<footer>
+    <div class="container">
+        &copy; Copyright {year} Stefan Grünewald. Powered by <a
+            href="https://astro.build/"
+            target="_blank"
+            rel="external nofollow noopener">Astro</a
+        >. Based on the <a
+            href="https://github.com/alshedivat/al-folio"
+            rel="external nofollow noopener"
+            target="_blank">al-folio</a
+        > theme.
+    </div>
+</footer>
+
+<style>
+  footer {
+    margin-top: auto;
+    color: #c2c2c2;
+    background-color: #424242;
+    font-size: 0.75rem;
+  }
+  footer .container {
+    text-align: center;
+    padding-top: 9px;
+    padding-bottom: 8px;
+  }
+  footer a {
+    color: white;
+  }
+  footer a:hover {
+    color: #e18c88;
+    text-decoration: none;
+  }
+</style>

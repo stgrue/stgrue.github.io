@@ -1,0 +1,48 @@
+---
+const allNews = Object.values(import.meta.glob('../assets/news/*.md', { eager: true }))
+    .sort((a: any, b: any) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+---
+<div class="news">
+    <h2>News</h2>
+    <div class="table-responsive">
+        <table class="table table-sm table-borderless">
+            {allNews.map((newsEntry: any) => <tr>
+                <th scope="row">{new Date(newsEntry.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}</th>
+                <td set:html={newsEntry.compiledContent()} />
+            </tr>)}
+        </table>
+    </div>
+</div>
+
+<style>
+    .news {
+        margin-top: 50px;
+    }
+
+    .news table th {
+        width: 19%;
+    }
+
+    .news table td {
+        font-size: 1rem;
+    }
+
+    .news table th,
+    .news table td {
+        padding-top: 0.1rem;
+        padding-bottom: 0.1rem;
+    }
+
+    .news table th:first-child,
+    .news table td:first-child {
+        padding-left: 0;
+    }
+
+    .news table th:first-child {
+        min-width: 100px;
+    }
+
+    .news table td {
+        line-height: 1.5;
+    }
+</style>

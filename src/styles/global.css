@@ -1,0 +1,88 @@
+/*******************************************************************************
+ * Global styles — base layout, typography, link colors, navbar
+ ******************************************************************************/
+html {
+  height: 100%;
+}
+
+body {
+  color: #060b11;
+  background-color: #f4f4f4;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 800px;
+}
+
+.post-header {
+  margin-bottom: 0.75rem;
+}
+
+a, table.table a, a:not([href]) {
+  color: #bb342f;
+}
+a:hover, table.table a:hover, a:not([href]):hover {
+  color: #bb342f;
+  text-decoration: underline;
+}
+a:active, table.table a:active, a:not([href]):active {
+  color: #7e2320;
+}
+a:hover:after, table.table a:hover:after, a:not([href]):hover:after {
+  width: 100%;
+}
+
+.navbar {
+  box-shadow: none;
+  border-bottom: 1px solid #e8e8e8;
+  opacity: 0.95;
+}
+
+.navbar.navbar-light a:hover {
+  text-decoration: none;
+}
+.navbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
+  color: #bb342f;
+}
+.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
+  background-color: inherit;
+  color: #bb342f;
+  font-weight: bolder;
+}
+.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link:hover {
+  color: #bb342f;
+}
+.navbar-toggler .icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #424242;
+  border-radius: 1px;
+  margin-bottom: 4px;
+  transition: all 0.2s;
+}
+.navbar-toggler .top-bar {
+  transform: rotate(45deg);
+  transform-origin: 10% 10%;
+}
+.navbar-toggler .middle-bar {
+  opacity: 0;
+}
+.navbar-toggler .bottom-bar {
+  transform: rotate(-45deg);
+  transform-origin: 10% 90%;
+}
+
+.navbar-toggler.collapsed .top-bar {
+  transform: rotate(0);
+}
+.navbar-toggler.collapsed .middle-bar {
+  opacity: 1;
+}
+.navbar-toggler.collapsed .bottom-bar {
+  transform: rotate(0);
+}
