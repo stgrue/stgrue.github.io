@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLine from "../components/TimeLine.astro";
 ---
 
-<BaseLayout displayPageName activePage="cv">
+<BaseLayout displayPageName activePage="cv" pageTitle="Stefan Grünewald: CV">
   <div class="container mt-5">
     <header class="post-header">
       <h1 class="post-title">CV</h1>
@@ -61,9 +61,15 @@ import TimeLine from "../components/TimeLine.astro";
         >
           <ul>
             <li>
-              Topic: Syntactically informed methods for information extraction
-              in scientific writing
+              Research areas: Information extraction; syntactic and semantic
+              parsing; neural architectures for structured prediction
             </li>
+            <li>
+              Ph.D. thesis: "Syntactic Dependencies and Beyond: Robust Neural
+              Architectures and Quality-Enhanced Corpora for Structured
+              Prediction in NLP"
+            </li>
+            <li>Final grade: <i>Magna cum laude</i></li>
           </ul>
         </TimeLine>
         <TimeLine
@@ -71,11 +77,14 @@ import TimeLine from "../components/TimeLine.astro";
           subtitle='2018–2019 at <a href="https://www.ed.ac.uk/informatics/">University of Edinburgh</a>'
         >
           <ul>
-            <li>Final grade: A3 ("with distinction")</li>
+            <li>
+              Areas of interest: Computational social science, network science
+            </li>
             <li>
               Master's thesis: "Epidemic Spreading and Real-Time Epidemic
               Response in Community Networks"
             </li>
+            <li>Final grade: A3 ("with distinction")</li>
           </ul>
         </TimeLine>
         <TimeLine
@@ -83,11 +92,16 @@ import TimeLine from "../components/TimeLine.astro";
           subtitle='2014–2018 at <a href="http://www.coli.uni-saarland.de/">Saarland University (Saarbrücken)</a>'
         >
           <ul>
-            <li>Final grade: 1.1 ("with distinction")</li>
+            <li>
+              Areas of interest: Grammar formalisms for natural language;
+              integration of machine learning and rule-based language
+              technologies.
+            </li>
             <li>
               Bachelor's thesis: "Efficient IRTG Parsing with Neural Chart
               Constraints" (in German)
             </li>
+            <li>Final grade: 1.1 ("with distinction")</li>
           </ul>
         </TimeLine>
         <TimeLine
@@ -136,5 +150,9 @@ import TimeLine from "../components/TimeLine.astro";
     padding-top: 1rem;
     margin-bottom: 1rem;
     text-align: right;
+  }
+
+  ul {
+    padding-left: 20px;
   }
 </style>

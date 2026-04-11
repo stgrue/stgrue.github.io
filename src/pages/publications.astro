@@ -9,13 +9,13 @@ import path from "node:path";
 const dataDir = path.resolve("src/assets/publications_data");
 const publications = yaml.load(
   fs.readFileSync(path.join(dataDir, "publications.yml"), "utf-8")
-);
+) as any[];
 const coauthors = yaml.load(
   fs.readFileSync(path.join(dataDir, "coauthors.yml"), "utf-8")
-);
+) as Record<string, { url: string }>;
 const venues = yaml.load(
   fs.readFileSync(path.join(dataDir, "venues.yml"), "utf-8")
-);
+) as Record<string, { url: string }>;
 
 // Group publications by year (descending)
 const pubsByYear = new Map();
@@ -26,7 +26,7 @@ for (const pub of publications) {
 const sortedYears = [...pubsByYear.keys()].sort((a, b) => b - a);
 ---
 
-<BaseLayout displayPageName activePage="publications">
+<BaseLayout displayPageName activePage="publications" pageTitle="Stefan Grünewald: Publications">
   <div class="container mt-5">
     <header class="post-header">
       <h1 class="post-title">Publications</h1>
@@ -37,7 +37,7 @@ const sortedYears = [...pubsByYear.keys()].sort((a, b) => b - a);
         <>
           <h2 class="year">{year}</h2>
           <ol class="bibliography">
-            {pubsByYear.get(year).map((pub) => (
+            {pubsByYear.get(year).map((pub: any) => (
               <PublicationEntry pub={pub} coauthors={coauthors} venues={venues} />
             ))}
           </ol>

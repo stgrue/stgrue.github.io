@@ -3,7 +3,7 @@ import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
-const { displayPageName, activePage } = Astro.props;
+const { displayPageName, activePage, pageTitle } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,7 +16,7 @@ const { displayPageName, activePage } = Astro.props;
 		/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-		<title>Stefan Grünewald</title>
+		<title>{pageTitle}</title>
 		<meta
 			name="description"
 			content="Personal website of Stefan Grünewald"
