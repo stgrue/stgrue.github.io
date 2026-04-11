@@ -126,14 +126,14 @@ function formatAuthors(authors: string[], coauthors: Record<string, { url: strin
     font-weight: bolder;
   }
 
-  .author a {
+  .author :global(a) {
     border-bottom: 1px dashed #bb342f;
   }
-  .author a:hover {
+  .author :global(a:hover) {
     border-bottom-style: solid;
     text-decoration: none;
   }
-  .author > em {
+  .author :global(em) {
     font-style: normal;
   }
 

@@ -7,10 +7,9 @@ Astro-based personal/academic website, migrated from Jekyll (al-folio theme).
 ### Layout
 
 All pages use `src/layouts/BaseLayout.astro`, which handles:
-- `<head>` with meta tags, Bootstrap 4.4.1 CSS, Font Awesome 5.13.0, Academicons 1.8.6
+- `<head>` with meta tags
 - `<Header>` and `<Footer>` components
-- jQuery + Bootstrap JS (with `is:inline`)
-- Global CSS import
+- Global CSS import (no external CSS/JS dependencies)
 
 Pages just import the layout and provide content via the default `<slot />`:
 
@@ -26,20 +25,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </BaseLayout>
 ```
 
-### External scripts in Astro
-
-Astro strips `<script>` tags by default. Use `is:inline` to keep them as-is (needed for jQuery/Bootstrap CDN scripts).
-
 ### Components
 
-- `src/components/Header.astro` — navbar with about/cv/publications links; accepts `displayPageName` prop to show/hide the site title
+- `src/components/Header.astro` — navbar with about/cv/publications links; accepts `displayPageName` prop to show/hide the site title. Mobile toggle uses vanilla JS
 - `src/components/Footer.astro` — shared footer (dynamic copyright year)
 
 ### Styles
 
 - `src/styles/global.css` — all theme styles, imported by `BaseLayout.astro`
-- Relies on Bootstrap 4.4.1 classes (grid, navbar, table, utility classes)
-- CSS uses al-folio's color scheme: primary `#bb342f`, text `#060b11`, background `#f4f4f4`, footer `#424242`
+- Self-contained CSS with custom reset, grid, navbar, and utility classes (no Bootstrap dependency)
+- Color scheme: primary `#bb342f`, text `#060b11`, background `#f4f4f4`, footer `#424242`
 
 ### Images
 
