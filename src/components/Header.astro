@@ -41,6 +41,9 @@ const { displayPageName, activePage } = Astro.props;
                         <a class="nav-link" href="/publications/">publications</a
                         >
                     </li>
+                    <li class={`nav-item ${activePage === "blog" ? "active" : ""}`}>
+                        <a class="nav-link" href="/blog/">blog</a>
+                    </li>
                 </ul>
             </div>
         </div>

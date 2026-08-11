@@ -1,0 +1,66 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import "../styles/post.css";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { title, date, description, tags } = post.data;
+
+// timeZone: "UTC" keeps a date written as `2026-08-11` from rendering as the
+// 10th for readers west of Greenwich. Same reasoning as NewsList.astro.
+const formattedDate = date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<BaseLayout
+  displayPageName
+  activePage="blog"
+  pageTitle={`Stefan Grünewald: ${title}`}
+  description={description}
+>
+  <article class="post">
+    <div class="post-column mt-5">
+      <header class="post-header">
+        <h1 class="post-title">{title}</h1>
+        <p class="post-meta">
+          <time datetime={date.toISOString()}>{formattedDate}</time>
+          <span class="post-tags">
+            {tags.map((tag) => <span class="post-tag">{tag}</span>)}
+          </span>
+        </p>
+      </header>
+    </div>
+
+    <div class="post-body">
+      <slot />
+    </div>
+
+    <div class="post-column post-nav">
+      <a href="/blog/">&larr; All posts</a>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post-title {
+    /* Slightly tighter than the default heading leading, which is loose at
+       the sizes a long post title reaches. */
+    line-height: 1.2;
+  }
+
+  .post-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .post-tags .post-tag + .post-tag {
+    margin-left: 0.5rem;
+  }
+</style>

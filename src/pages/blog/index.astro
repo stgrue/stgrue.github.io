@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+// Group by year (descending), same shape as the publications page.
+const postsByYear = new Map<number, typeof posts>();
+for (const post of posts) {
+  const year = post.data.date.getUTCFullYear();
+  if (!postsByYear.has(year)) postsByYear.set(year, []);
+  postsByYear.get(year)!.push(post);
+}
+const sortedYears = [...postsByYear.keys()].sort((a, b) => b - a);
+
+// timeZone: "UTC" so a date written as `2026-08-11` never renders as the 10th.
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+---
+
+<BaseLayout
+  displayPageName
+  activePage="blog"
+  pageTitle="Stefan Grünewald: Blog"
+  description="Writing by Stefan Grünewald on language, computation, and whatever else holds still long enough."
+>
+  <div class="container mt-5">
+    <header class="post-header">
+      <h1 class="post-title">Blog</h1>
+    </header>
+
+    <div class="posts">
+      {
+        sortedYears.map((year) => (
+          <>
+            <h2 class="year">{year}</h2>
+            <ol class="post-list">
+              {postsByYear.get(year)!.map((post) => (
+                <li class="post-item">
+                  <a class="post-item-title" href={`/blog/${post.id}/`}>
+                    {post.data.title}
+                  </a>
+                  <div class="post-item-date">{formatDate(post.data.date)}</div>
+                  <p class="post-item-description">{post.data.description}</p>
+                </li>
+              ))}
+            </ol>
+          </>
+        ))
+      }
+
+      {posts.length === 0 && <p>Nothing here yet.</p>}
+    </div>
+  </div>
+
+  <style>
+    .posts {
+      margin-top: 2rem;
+      margin-bottom: 40px;
+    }
+
+    /* Year heading: the site's signature right-aligned grey rule, matching
+       .publications h2.year and .cv-heading. */
+    .posts h2.year {
+      color: #828282;
+      border-top: 1px solid #828282;
+      padding-top: 1rem;
+      margin-top: 2rem;
+      /* Negative margin pulls the list up so the first post sits directly
+         under the rule, level with the year label rather than below it —
+         same device as .publications h2.year. */
+      margin-bottom: -2.25rem;
+      text-align: right;
+    }
+
+    .posts ol.post-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 0;
+    }
+
+    /* Only between items: the first one is positioned by the year heading's
+       negative margin above. */
+    .post-item + .post-item {
+      margin-top: 1.5rem;
+    }
+
+    .post-item-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .post-item-date {
+      color: #828282;
+      font-size: 0.9rem;
+      margin-top: 0.1rem;
+    }
+
+    .post-item-description {
+      margin-top: 0.35rem;
+      margin-bottom: 0;
+      max-width: 60ch;
+    }
+  </style>
+</BaseLayout>

@@ -1,0 +1,266 @@
+---
+/**
+ * Example interactive visualization — a template to copy for new ones.
+ *
+ * Demonstrates the conventions that matter for embedding a visualization in
+ * a post:
+ *
+ *  1. A SINGLE root element carrying the caller's width class. Only direct
+ *     children of `.post-body` are matched by the break-out grid rules in
+ *     post.css, so wrapping this in anything would break `class="wide"`.
+ *  2. The script is bundled by Astro and runs ONCE per page, deduplicated —
+ *     even if the component appears twice. So it selects *all* instances and
+ *     initialises each, rather than assuming a single element.
+ *  3. Canvas is sized in CSS pixels but backed at devicePixelRatio, otherwise
+ *     it renders blurry on retina screens.
+ *  4. Animation stops when the figure scrolls out of view, and honours
+ *     prefers-reduced-motion.
+ */
+
+interface Props {
+  /** e.g. "wide" or "full-bleed" — see src/styles/post.css */
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<figure class:list={["fourier", className]} data-fourier>
+  <canvas data-canvas></canvas>
+
+  <div class="controls">
+    <label>
+      <span class="control-label">Harmonics</span>
+      <input
+        type="range"
+        min="1"
+        max="15"
+        value="1"
+        step="1"
+        data-harmonics
+        aria-label="Number of harmonics"
+      />
+      <output data-output>1</output>
+    </label>
+  </div>
+
+  <figcaption>
+    Each circle is one term of the series, spinning at an odd multiple of the
+    base frequency. Adding more of them squares off the corners — but the
+    overshoot at each jump never quite goes away, no matter how many you add.
+  </figcaption>
+</figure>
+
+<style>
+  .fourier {
+    margin: 0;
+  }
+
+  .fourier canvas {
+    display: block;
+    width: 100%;
+    height: 300px;
+    background-color: #fbfbfb;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.25rem;
+  }
+
+  .fourier .controls {
+    margin-top: 0.75rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  .fourier label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .fourier input[type="range"] {
+    width: min(260px, 50vw);
+    accent-color: #bb342f;
+  }
+
+  .fourier output {
+    min-width: 1.5em;
+    text-align: left;
+    font-variant-numeric: tabular-nums;
+    color: #060b11;
+  }
+</style>
+
+<script>
+  // Pixels per radian along the traced wave — one full period every ~200px.
+  const RADIANS_PER_PX = (2 * Math.PI) / 200;
+  // Worst-case summed epicycle radius (15 harmonics), used to reserve space.
+  const MAX_EXTENT = 2.98;
+
+  function initFourier(root: HTMLElement) {
+    const canvas = root.querySelector<HTMLCanvasElement>("[data-canvas]");
+    const slider = root.querySelector<HTMLInputElement>("[data-harmonics]");
+    const output = root.querySelector<HTMLOutputElement>("[data-output]");
+    if (!canvas || !slider || !output) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    let width = 0;
+    let height = 0;
+    let scale = 40; // radius of the first (largest) circle
+    let originX = 0;
+    let waveX = 0;
+    let harmonics = Number(slider.value);
+    let t = 0;
+    let running = false;
+    let frame = 0;
+    let lastTime = 0;
+
+    function layout() {
+      const rect = canvas!.getBoundingClientRect();
+      if (rect.width === 0) return;
+
+      width = rect.width;
+      height = rect.height;
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas!.width = Math.round(width * dpr);
+      canvas!.height = Math.round(height * dpr);
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      // Fit the epicycles in the vertical space, and keep them to the left
+      // third or so of the canvas so the wave has room to breathe.
+      scale = Math.min(
+        (height / 2 - 10) / MAX_EXTENT,
+        (width * 0.3) / MAX_EXTENT,
+        50
+      );
+      originX = scale * MAX_EXTENT + 10;
+      waveX = originX + scale * MAX_EXTENT + 10;
+    }
+
+    /** Vertical offset of the partial sum at phase `phase`. */
+    function seriesAt(phase: number) {
+      let sum = 0;
+      for (let i = 0; i < harmonics; i++) {
+        const k = 2 * i + 1;
+        sum += ((scale * 4) / (Math.PI * k)) * Math.sin(k * phase);
+      }
+      return sum;
+    }
+
+    function draw() {
+      if (width === 0) return;
+      const cy = height / 2;
+
+      ctx!.clearRect(0, 0, width, height);
+
+      // --- Epicycles -------------------------------------------------------
+      let x = originX;
+      let y = cy;
+      ctx!.lineWidth = 1;
+
+      for (let i = 0; i < harmonics; i++) {
+        const k = 2 * i + 1;
+        const r = (scale * 4) / (Math.PI * k);
+
+        ctx!.strokeStyle = "rgba(6, 11, 17, 0.16)";
+        ctx!.beginPath();
+        ctx!.arc(x, y, r, 0, Math.PI * 2);
+        ctx!.stroke();
+
+        const nx = x + r * Math.cos(k * t);
+        const ny = y + r * Math.sin(k * t);
+
+        ctx!.strokeStyle = "rgba(6, 11, 17, 0.5)";
+        ctx!.beginPath();
+        ctx!.moveTo(x, y);
+        ctx!.lineTo(nx, ny);
+        ctx!.stroke();
+
+        x = nx;
+        y = ny;
+      }
+
+      // --- Traced wave -----------------------------------------------------
+      // Computed analytically rather than accumulated in a buffer, so the wave
+      // is correct on the very first frame and stays correct when the slider
+      // moves or the canvas resizes.
+      ctx!.strokeStyle = "#bb342f";
+      ctx!.lineWidth = 2;
+      ctx!.beginPath();
+      for (let px = 0; waveX + px <= width; px++) {
+        const wy = cy + seriesAt(t - px * RADIANS_PER_PX);
+        if (px === 0) ctx!.moveTo(waveX, wy);
+        else ctx!.lineTo(waveX + px, wy);
+      }
+      ctx!.stroke();
+
+      // Connector from the tip of the last circle to the head of the wave.
+      ctx!.strokeStyle = "rgba(6, 11, 17, 0.3)";
+      ctx!.lineWidth = 1;
+      ctx!.beginPath();
+      ctx!.moveTo(x, y);
+      ctx!.lineTo(waveX, cy + seriesAt(t));
+      ctx!.stroke();
+
+      ctx!.fillStyle = "#bb342f";
+      ctx!.beginPath();
+      ctx!.arc(waveX, cy + seriesAt(t), 3, 0, Math.PI * 2);
+      ctx!.fill();
+    }
+
+    function tick(now: number) {
+      if (!running) return;
+      const dt = lastTime ? Math.min((now - lastTime) / 1000, 0.05) : 0;
+      lastTime = now;
+      t += dt * 1.2;
+      draw();
+      frame = requestAnimationFrame(tick);
+    }
+
+    function start() {
+      if (running || reduceMotion) return;
+      running = true;
+      lastTime = 0;
+      frame = requestAnimationFrame(tick);
+    }
+
+    function stop() {
+      running = false;
+      cancelAnimationFrame(frame);
+    }
+
+    slider.addEventListener("input", () => {
+      harmonics = Number(slider.value);
+      output.textContent = slider.value;
+      if (!running) draw();
+    });
+
+    new ResizeObserver(() => {
+      layout();
+      draw();
+    }).observe(canvas);
+
+    // Only animate while the figure is actually on screen.
+    new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) start();
+        else stop();
+      }
+    }).observe(root);
+
+    layout();
+    draw();
+  }
+
+  // Runs once per page, so initialise every instance on it.
+  document
+    .querySelectorAll<HTMLElement>("[data-fourier]")
+    .forEach(initFourier);
+</script>

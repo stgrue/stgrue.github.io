@@ -1,0 +1,47 @@
+---
+title: "Square waves from circles"
+date: 2025-12-14
+description: "Stack enough spinning circles and you get a square corner — almost."
+tags: ["mathematics", "visualization"]
+---
+
+import FourierSquareWave from "../../components/viz/FourierSquareWave.astro";
+
+A square wave is about as un-circular a shape as you can draw. It sits flat,
+jumps, sits flat again. Circles do nothing but curve. So it's a genuinely
+strange fact that you can build the first thing entirely out of the second.
+
+Here is the whole trick in one picture. Start with one circle turning at a
+steady rate, and trace the height of its rim over time — that's a sine wave.
+Now attach a second, smaller circle to the rim of the first, turning three
+times as fast. Then a third turning five times as fast, and so on. Drag the
+slider to add more:
+
+<FourierSquareWave class="wide" />
+
+With one circle you get a plain sine wave. By three or four, the flat stretches
+have started to appear. By fifteen, it's unmistakably a square wave with the
+corners slightly rounded off.
+
+## The part that doesn't go away
+
+Watch the corners as you add circles. The wobble narrows, and it moves closer
+to the jump — but it never shrinks. There is always an overshoot of about nine
+percent right at the discontinuity, no matter how many terms you add.
+
+This is the Gibbs phenomenon, and it's the reason the picture above is worth
+looking at rather than just reading about. The series really does converge to
+the square wave at every individual point; the overshoot survives by retreating
+into an ever-narrower sliver next to the jump, which is exactly the kind of
+thing that is hard to believe from an inequality and obvious from an animation.
+
+## Why odd multiples
+
+The frequencies go 1, 3, 5, 7 — never 2, 4, 6. A square wave is antisymmetric
+about its midpoint: shift it half a period and you get its negative. The even
+harmonics don't have that property, so they can't contribute anything, and
+their coefficients come out to exactly zero.
+
+The amplitudes fall off as one over the frequency. That's slow, which is why it
+takes so many circles to get a decent corner — sharp features are expensive in
+this currency.
