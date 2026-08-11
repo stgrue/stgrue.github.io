@@ -26,7 +26,8 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# Playright stuff for Claude
+# Claude stuff
+.claude/
 .playwright-cli/
 
 # TODO list
