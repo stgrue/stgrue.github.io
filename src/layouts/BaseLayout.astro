@@ -3,7 +3,22 @@ import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
-const { displayPageName, activePage, pageTitle } = Astro.props;
+interface Props {
+	/** Show the "Stefan Grünewald" brand in the navbar (omitted on the homepage). */
+	displayPageName?: boolean;
+	/** Which nav item to highlight: "about" | "cv" | "publications" | "blog". */
+	activePage?: string;
+	pageTitle: string;
+	/** Page-specific meta description; falls back to the site-wide one. */
+	description?: string;
+}
+
+const {
+	displayPageName,
+	activePage,
+	pageTitle,
+	description = "Personal website of Stefan Grünewald",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -17,10 +32,7 @@ const { displayPageName, activePage, pageTitle } = Astro.props;
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 		<title>{pageTitle}</title>
-		<meta
-			name="description"
-			content="Personal website of Stefan Grünewald"
-		/>
+		<meta name="description" content={description} />
 
 	</head>
 

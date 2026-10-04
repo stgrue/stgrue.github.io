@@ -1,0 +1,20 @@
+---
+import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import FragmentLayout from "../../layouts/FragmentLayout.astro";
+
+export const getStaticPaths = (async () => {
+  const fragments = await getCollection("fragments");
+  return fragments.map((fragment) => ({
+    params: { slug: fragment.id },
+    props: { fragment },
+  }));
+}) satisfies GetStaticPaths;
+
+const { fragment } = Astro.props;
+const { Content } = await render(fragment);
+---
+
+<FragmentLayout fragment={fragment}>
+  <Content />
+</FragmentLayout>

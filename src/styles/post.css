@@ -1,0 +1,260 @@
+/*******************************************************************************
+ * Blog post styles — reading measure, break-out grid, prose typography
+ *
+ * Loaded by PostLayout.astro. This is a plain stylesheet rather than a scoped
+ * <style> block because Astro's scoped styles do not reach the HTML generated
+ * from Markdown/MDX content.
+ ******************************************************************************/
+
+/* --- Break-out grid ---------------------------------------------------------
+ *
+ * Named grid lines let any direct child of .post-body opt into a wider column:
+ *
+ *   |<-------------------- full --------------------->|
+ *          |<------------ wide ------------>|
+ *                  |<--- prose --->|
+ *
+ * Prose sits at 680px/18px (~75 characters per line, the classic 60-75 range).
+ * Everything shares one centre axis, so the narrower-than-800px text column
+ * reads as deliberate next to the site's 800px chrome.
+ *
+ * The outer `minmax(15px, 1fr)` columns are what make "full bleed" work. The
+ * usual trick — `width: 100vw` plus negative margins — counts the vertical
+ * scrollbar in 100vw and so overflows the page horizontally on desktop. Here
+ * the grid never exceeds its containing block, so that cannot happen.
+ */
+
+/* `.post-column` shares the geometry but not the typography, so the post
+ * header and the back-link line up with the prose instead of with the site's
+ * wider 800px .container. */
+.post-body,
+.post-column {
+  --prose: 680px;
+  --breakout: 180px; /* extra width on each side of `wide` => ~1040px */
+  --gutter: 15px; /* matches .container's side padding in global.css */
+
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--gutter), 1fr)
+    [wide-start] minmax(0, var(--breakout))
+    /* The gutters must come *out* of the prose column, not be added to it:
+       a bare `min(--prose, 100%)` resolves to the full container width on
+       narrow screens, and the two gutters then push the grid past the
+       viewport. */
+    [prose-start] min(var(--prose), 100% - var(--gutter) * 2) [prose-end]
+    minmax(0, var(--breakout)) [wide-end]
+    minmax(var(--gutter), 1fr) [full-end];
+}
+
+.post-body {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.post-body > *,
+.post-column > * {
+  grid-column: prose;
+}
+
+.post-body > .wide {
+  grid-column: wide;
+}
+
+.post-body > .full-bleed {
+  grid-column: full;
+}
+
+/* Only direct children are addressed by the rules above, so a visualization
+ * component must render a *single* root element carrying the width class. */
+
+/* --- Prose typography -------------------------------------------------------
+ * global.css only resets margins, so everything a rendered post needs lives
+ * here. Palette matches the rest of the site: #060b11 text, #bb342f accent,
+ * #828282 muted.
+ */
+
+/* Strip the margins global.css sets, then reintroduce vertical rhythm in one
+ * place with the adjacent-sibling ("lobotomised owl") rule below.
+ *
+ * :where() contributes zero specificity, so this reset stays at (0,1,0) — the
+ * same weight as the owl rule that follows it, which therefore wins by source
+ * order. Written as a plain `.post-body p` selector it would be (0,1,1) and
+ * would silently beat the owl, collapsing the space between paragraphs. */
+.post-body
+  :where(p, ul, ol, blockquote, pre, figure, table, hr, h2, h3, h4, h5, h6) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.post-body > * + * {
+  margin-top: 1.5rem;
+}
+
+/* Nested blocks (paragraphs inside a blockquote or a list item) need their own
+ * rhythm, since the rule above only reaches direct children. */
+.post-body li > * + *,
+.post-body blockquote > * + * {
+  margin-top: 1rem;
+}
+
+/* Headings get extra room above, and none of the default margin below. */
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+  margin-bottom: 0;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.post-body > h2 {
+  margin-top: 3rem;
+  font-size: 1.6rem;
+}
+
+.post-body > h3 {
+  margin-top: 2.25rem;
+  font-size: 1.3rem;
+}
+
+.post-body > h4 {
+  margin-top: 2rem;
+  font-size: 1.125rem;
+}
+
+.post-body ul,
+.post-body ol {
+  margin-bottom: 0;
+  padding-left: 1.5rem;
+}
+
+.post-body li + li {
+  margin-top: 0.5rem;
+}
+
+.post-body blockquote {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 3px solid #828282;
+  color: #4a5058;
+}
+
+/* Inline code */
+.post-body :not(pre) > code {
+  font-size: 0.9em;
+  padding: 0.15em 0.35em;
+  border-radius: 0.25rem;
+  background-color: #e7e7e7;
+}
+
+/* Shiki-highlighted blocks. Shiki sets its own background from the theme;
+ * the border keeps the block legible against the near-white page. */
+.post-body pre {
+  padding: 1rem 1.25rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.post-body pre > code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-body figure {
+  margin: 0;
+}
+
+.post-body figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #555;
+  text-align: center;
+}
+
+/* A wide/full-bleed figure's caption stays at the prose measure, so captions
+ * keep a readable line length no matter how wide the figure is. */
+.post-body > .wide > figcaption,
+.post-body > .full-bleed > figcaption {
+  max-width: var(--prose);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.post-body hr {
+  margin: 3rem 0;
+  border: 0;
+  border-top: 1px solid #828282;
+}
+
+/* Tables reuse the site's .table look without needing the class in Markdown. */
+.post-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.post-body th,
+.post-body td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.post-body th {
+  border-bottom: 2px solid #828282;
+}
+
+/* Post body links are underlined — inside running prose the site's
+ * colour-only link treatment is easy to miss. */
+.post-body a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* Anything wide enough to overflow scrolls inside its own box rather than
+ * pushing the page sideways. */
+.post-body .table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* --- Post header ----------------------------------------------------------*/
+
+.post-meta {
+  margin-top: 0.25rem;
+  color: #828282;
+  font-size: 0.95rem;
+}
+
+/* Keep "December 14, 2025" from breaking across lines on narrow screens. */
+.post-meta time {
+  white-space: nowrap;
+}
+
+.post-meta .post-tags {
+  margin-left: 0.5rem;
+}
+
+.post-meta .post-tag::before {
+  content: "#";
+}
+
+/* --- Back link ------------------------------------------------------------*/
+
+.post-nav {
+  margin-top: 3rem;
+  margin-bottom: 40px;
+}

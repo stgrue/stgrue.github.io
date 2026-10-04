@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const fragments = (await getCollection("fragments")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+---
+
+<BaseLayout displayPageName pageTitle="Stefan Grünewald: Fragments">
+  <div class="container mt-5">
+    <header class="post-header">
+      <h1 class="post-title">Fragments</h1>
+    </header>
+
+    <ul class="fragments">
+      {fragments.map((fragment) => (
+        <li>
+          {/* toISOString() is UTC, so the date matches what the frontmatter says. */}
+          <time datetime={fragment.data.date.toISOString()}>{fragment.data.date.toISOString().slice(0, 10)}</time> &ndash; <a href={`/fragments/${fragment.id}/`}>{fragment.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <style>
+    .fragments {
+      margin-top: 2rem;
+      margin-bottom: 40px;
+    }
+  </style>
+</BaseLayout>
